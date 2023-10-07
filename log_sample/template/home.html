@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block nav %}
+<!-- nave start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="#">Suggest Movie</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- nav end -->
+{% endblock nav %}
+
+
+{% block body %}
+<!-- home body -->
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel" style="height: 100%;">
+    <div class="carousel-inner">
+        <div class="carousel-item active" style="max-height: 500px;">
+            <img class="d-block" style="min-width: 100%;"
+                src="{% static 'one.jpg' %}"
+                alt="First slide">
+                <!-- src="https://onlookersmedia.in/wp-content/uploads/2020/03/one-malayalam-movie-poster-still-mammootty-1.jpg" -->
+        </div>
+        <div class="carousel-item justify-content-center align-items-center" style="max-height: 500px;">
+            <img class="d-block " style="min-width: 100%;"
+                src="{% static 'two.jpg' %}" alt="Second slide">
+                <!-- https://live.staticflickr.com/65535/48732181968_d84dd5b8a0_b.jpg -->
+        </div>
+        <div class="carousel-item" style="height: 500px;min-width: 100%;">
+            <img class="d-block "
+                src="{% static 'there.jpg' %}"
+                alt="Third slide">
+                <!-- https://www.thecompleteactor.com/uploads/movies/title_images/secondary/marakkar_mohanlal-uuj5HpYLzVePWwD.jpg -->
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt-5">
+    <div class="">
+        <h1><b>Trending Movies</b></h1>
+        <p>Most watched movies in this week</p>
+        <hr>
+    </div>
+    <h3>From Kerala</h3>
+    <hr>
+    <div class="row justify-content-around ">
+        {% for movi in malayalam %}
+
+        <div class="col-xl-2 col-sm-3 col-10 card mx-2 my-5" style="width: 18rem;">
+            <div style="height: 400px;width: 100%;">
+                <img src="{{ movi.img}}" class="card-img-top" height="100%" alt="image">
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{movi.title}}</h5>
+                <p class="card-text">Year : {{movi.date}}.</p>
+                <a href="" class="btn btn-primary">Book a show</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock body %}
